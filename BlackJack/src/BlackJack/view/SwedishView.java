@@ -1,5 +1,7 @@
 package BlackJack.view;
 
+import BlackJack.controller.ViewInput;
+
 public class SwedishView implements IView 
     {
         public void DisplayWelcomeMessage()
@@ -12,17 +14,27 @@ public class SwedishView implements IView
             System.out.println("Skriv 'p' för att Spela, 'h' för nytt kort, 's' för att stanna 'q' för att avsluta\n");
         }
         
-        public int GetInput()
+        public ViewInput GetInput()
         {
           try {
             int c = System.in.read();
             while (c == '\r' || c =='\n') {
               c = System.in.read();
             }
-            return c;
+            if(c == 'p') {
+            	return ViewInput.PLAY;
+            } else if(c == 'h') {
+            	return ViewInput.HIT;
+            } else if(c == 's') {
+            	return ViewInput.STAND;
+            } else if(c == 'q') {
+            	return ViewInput.QUIT;
+            } else {
+            	return ViewInput.NONE;
+            }
           } catch (java.io.IOException e) {
             System.out.println("" + e);
-            return 0;
+            return ViewInput.NONE;
           }
         }
         
