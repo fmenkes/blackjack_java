@@ -15,9 +15,11 @@ public class Player {
     System.out.println("Hello List World");
   }
   
-  public void DealCard(Card a_addToHand)
+  public void DealCard(Deck a_deck, boolean a_show)
   {
-    m_hand.add(a_addToHand);
+	Card c = a_deck.GetCard();
+	c.Show(a_show);
+    m_hand.add(c);
   }
   
   public Iterable<Card> GetHand()
