@@ -7,11 +7,13 @@ public class Dealer extends Player {
   private Deck m_deck;
   private INewGameStrategy m_newGameRule;
   private IHitStrategy m_hitRule;
+  private IGameWinnerStrategy m_gameWinnerRule;
 
   public Dealer(RulesFactory a_rulesFactory) {
   
     m_newGameRule = a_rulesFactory.GetNewGameRule();
     m_hitRule = a_rulesFactory.GetHitRule();
+    m_gameWinnerRule = a_rulesFactory.GetGameWinnerRule();
     
     /*for(Card c : m_deck.GetCards()) {
       c.Show(true);
@@ -48,7 +50,8 @@ public class Dealer extends Player {
     } else if (CalcScore() > g_maxScore) {
       return false;
     }
-    return CalcScore() >= a_player.CalcScore();
+    
+    return m_gameWinnerRule.IsDealerWinner(CalcScore(), a_player.CalcScore());
   }
 
   public boolean IsGameOver() {
