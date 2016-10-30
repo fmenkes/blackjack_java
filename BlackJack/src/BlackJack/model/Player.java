@@ -1,18 +1,25 @@
 package BlackJack.model;
 
 import java.util.List;
+
+import BlackJack.controller.EventObserver;
+
 import java.util.LinkedList;
 
 public class Player {
 
   private List<Card> m_hand;
+  private EventObserver m_observer;
   protected final int g_maxScore = 21;
 
   public Player()
   {
-  
     m_hand = new LinkedList<Card>();
     System.out.println("Hello List World");
+  }
+  
+  public void AttachObserver(EventObserver a_observer) {
+	  m_observer = a_observer;
   }
   
   public void DealCard(Deck a_deck, boolean a_show)
@@ -20,6 +27,7 @@ public class Player {
 	Card c = a_deck.GetCard();
 	c.Show(a_show);
     m_hand.add(c);
+    m_observer.onEvent();
   }
   
   public Iterable<Card> GetHand()

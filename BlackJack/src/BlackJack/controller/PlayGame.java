@@ -3,34 +3,56 @@ package BlackJack.controller;
 import BlackJack.view.IView;
 import BlackJack.model.Game;
 
-public class PlayGame {
+public class PlayGame implements EventObserver {
 
-  public boolean Play(Game a_game, IView a_view) {
-    a_view.DisplayWelcomeMessage();
-    
-    a_view.DisplayDealerHand(a_game.GetDealerHand(), a_game.GetDealerScore());
-    a_view.DisplayPlayerHand(a_game.GetPlayerHand(), a_game.GetPlayerScore());
+	private Game m_game;
+	private IView m_view;
+	
+  public PlayGame(Game a_game, IView a_view) {
+	  this.m_game = a_game;
+	  this.m_view = a_view;
+  }
 
-    if (a_game.IsGameOver())
+  public boolean Play() {
+    Redraw();
+
+    if (m_game.IsGameOver())
     {
-        a_view.DisplayGameOver(a_game.IsDealerWinner());
+        m_view.DisplayGameOver(m_game.IsDealerWinner());
     }
 
-    ViewInput input = a_view.GetInput();
+    ViewInput input = m_view.GetInput();
     
     if (input == ViewInput.PLAY)
     {
-        a_game.NewGame();
+        m_game.NewGame();
     }
     else if (input == ViewInput.HIT)
     {
-        a_game.Hit();
+        m_game.Hit();
     }
     else if (input == ViewInput.STAND)
     {
-        a_game.Stand();
+        m_game.Stand();
     }
 
     return input != ViewInput.QUIT;
+  }
+
+  @Override
+  public void onEvent() {
+	try {
+		Thread.sleep(500);
+		Redraw();
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
+  }
+  
+  private void Redraw() {
+	  m_view.DisplayWelcomeMessage();
+	    
+	  m_view.DisplayDealerHand(m_game.GetDealerHand(), m_game.GetDealerScore());
+	  m_view.DisplayPlayerHand(m_game.GetPlayerHand(), m_game.GetPlayerScore());
   }
 }

@@ -1,5 +1,7 @@
 package BlackJack.model;
 
+import BlackJack.controller.EventObserver;
+
 public class Game {
 
   private Dealer m_dealer;
@@ -9,6 +11,11 @@ public class Game {
   {
     m_dealer = new Dealer(new BlackJack.model.rules.RulesFactory());
     m_player = new Player();
+  }
+  
+  public void AttachObservers(EventObserver a_observer) {
+	  m_dealer.AttachObserver(a_observer);
+	  m_player.AttachObserver(a_observer);
   }
     
     
