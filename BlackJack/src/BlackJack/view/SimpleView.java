@@ -1,5 +1,6 @@
 package BlackJack.view;
 
+import BlackJack.controller.IView;
 import BlackJack.controller.ViewInput;
 
 public class SimpleView implements IView 

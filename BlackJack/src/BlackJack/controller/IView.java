@@ -1,6 +1,4 @@
-package BlackJack.view;
-
-import BlackJack.controller.ViewInput;;
+package BlackJack.controller;
 
 public interface IView
 {

@@ -1,9 +1,6 @@
 package BlackJack.model;
 
 import java.util.List;
-
-import BlackJack.controller.EventObserver;
-
 import java.util.LinkedList;
 
 public class Player {
@@ -22,11 +19,9 @@ public class Player {
 	  m_observer = a_observer;
   }
   
-  public void DealCard(Deck a_deck, boolean a_show)
+  public void AddCardToHand(Card a_card)
   {
-	Card c = a_deck.GetCard();
-	c.Show(a_show);
-    m_hand.add(c);
+    m_hand.add(a_card);
     m_observer.onEvent();
   }
   

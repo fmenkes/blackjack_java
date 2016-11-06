@@ -1,4 +1,4 @@
-package BlackJack.controller;
+package BlackJack.model;
 
 public interface EventObserver {
 	void onEvent();

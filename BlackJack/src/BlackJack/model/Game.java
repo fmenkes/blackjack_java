@@ -1,7 +1,5 @@
 package BlackJack.model;
 
-import BlackJack.controller.EventObserver;
-
 public class Game {
 
   private Dealer m_dealer;
