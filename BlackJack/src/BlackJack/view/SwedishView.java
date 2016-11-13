@@ -1,6 +1,5 @@
 package BlackJack.view;
 
-import BlackJack.controller.IView;
 import BlackJack.controller.ViewInput;
 
 public class SwedishView implements IView 
