@@ -1,7 +1,5 @@
 package BlackJack.view;
 
-import BlackJack.controller.ViewInput;
-
 public class SwedishView implements IView 
     {
         public void DisplayWelcomeMessage()

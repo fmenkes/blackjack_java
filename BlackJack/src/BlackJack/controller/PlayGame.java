@@ -3,6 +3,7 @@ package BlackJack.controller;
 import BlackJack.model.EventObserver;
 import BlackJack.model.Game;
 import BlackJack.view.IView;
+import BlackJack.view.ViewInput;
 
 public class PlayGame implements EventObserver {
 
